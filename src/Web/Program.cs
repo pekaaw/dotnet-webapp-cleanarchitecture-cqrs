@@ -1,3 +1,7 @@
+using Application.UseCases.Read.FirstUser;
+using Application.UseCases.Read.SecondUser;
+using Web.Extensions;
+
 namespace Web;
 
 public class Program
@@ -8,6 +12,13 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
+
+        builder.Services.AddCommandHandlers();
+        builder.Services.AddQueryHandlers();
+
+        builder.Services.AddTransient<IHandlerFactory, HandlerFactory>();
+        builder.Services.AddTransient<ISecondHandlerFactory, SecondHandlerFactory>();
+        builder.Services.AddTransient<IHandle<SecondUserQuery, SecondUserResponse>, SecondUserHandler>();
 
         var app = builder.Build();
 
