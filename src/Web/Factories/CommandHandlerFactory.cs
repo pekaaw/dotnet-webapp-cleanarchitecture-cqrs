@@ -1,5 +1,5 @@
 using Application.UseCases.Write;
-using Web.Exceptions;
+using Web.Factories.Exceptions;
 
 namespace Web.Factories;
 
@@ -20,7 +20,7 @@ public class CommandHandlerFactory : ICommandHandlerFactory
 
         if (handler == null)
         {
-            throw new CommandHandlerNotFoundException<ICommandHandler<TCommand>>();
+            throw new CommandHandlerNotFoundException<TCommand>();
         }
 
         return handler;

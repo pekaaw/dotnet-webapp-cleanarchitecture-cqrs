@@ -1,5 +1,5 @@
 using Application.UseCases.Read;
-using Web.Exceptions;
+using Web.Factories.Exceptions;
 
 namespace Web.Factories;
 
@@ -20,7 +20,7 @@ public class QueryHandlerFactory : IQueryHandlerFactory
 
         if (handler == null)
         {
-            throw new QueryHandlerNotFoundException<IQueryHandler<TQuery, TResponse>>();
+            throw new QueryHandlerNotFoundException<TQuery, TResponse>();
         }
 
         return handler;
